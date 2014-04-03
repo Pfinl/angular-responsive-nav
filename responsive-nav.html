@@ -1,0 +1,13 @@
+<ul>
+    <li ng-repeat="item in items" ng-class="{active: isActiveFilter($index)}">
+        <a ng-click="onSelect($index)">{{item.name}}</a>
+    </li>
+    <li class="nav-more" ng-style="{display: showMore && 'inline-block' || 'none'}">
+        <a class="dropdown-toggle">More <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li ng-repeat="item in dropDownItems">
+                <a ng-click="onSelect($index, true)">{{item.name}}</a>
+            </li>
+        </ul>
+    </li>
+</ul>
