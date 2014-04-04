@@ -1,13 +1,51 @@
-.directive('responsiveNav', ['$compile', '$parse', function ($compile, $parse) {
+var app = angular.module("app", [])
+
+.controller("NavController", ["$scope", "$q", function ($scope, $location, $q) {
+
+    $scope.getNavItems = function () {
+        //This must return a promise
+	var items = [];
+        var deferred = $q.defer();
+
+	items.push({ "name": "Nav 1", "view": "ok" });
+        items.push({ "name": "Nav 2", "view": "whatever" });
+        items.push({ "name": "Nav 3", "view": "great" });
+
+	items.push({ "name": "Google", "url": "http://google.com" });
+	items.push({ "name": "Angular JS", "url": "http://angularjs.org/" });
+	items.push({ "name": "Angular Translate Rocks", "url": "https://github.com/angular-translate/angular-translate" });
+
+        deferred.resolve(items);
+
+        return deferred.promise;
+
+    };
+
+    $scope.onItemSelect = function (item, broadcastKey) {
+	//Handle when the nav item is clicked
+        if (angular.isDefined(item.url)) {
+            //$location.path(item.url);
+	    window.open(item.url);
+            return;
+        }
+
+        if (broadcastKey)
+            $scope.$broadcast(broadcastKey, item);
+
+    };
+
+    
+}])
+.directive('responsiveNav', ['$rootScope', '$compile', '$parse', function ($rootScope, $compile, $parse) {
     return {
-        templateUrl: 'responsive-menu.html',
+        templateUrl: 'responsive-nav.html',
         replace: true,
         link: function (scope, element, attrs, controller) {
             //get passed in max to show
             var maxInView = scope.$eval(attrs.maxInView) || 3; //this should be the max that fits well on big screens
             var getItems = $parse(attrs.getItems); //the method to call to populate items
             var onItemClickCallback = $parse(attrs.itemClick); //the method to call to handle the item click event
-            var broadcastKey = attrs.navBroadcastKey; //instead od using the onItemClickCallback, it will trigger a broadcast when the item is clicked 
+            var broadcastKey = attrs.navBroadcastKey; //instead of calling the click callback method, it will trigger a broadcast from the root scope when the item is clicked 
 
             scope.showMore = false;
             getItems(scope, {}).then(function (result) {
@@ -48,7 +86,7 @@
                 }
                 else if (angular.isDefined(broadcastKey)) {
                     //else if we have a broadcast key
-                    scope.$broadcast(broadcastKey, item);
+                    $rootScope.$broadcast(broadcastKey, item);
                 }
 
             };
