@@ -9,6 +9,8 @@ The simple-sample.html is a full page example where clicking an item will simply
 
 The broadcast-sample.html is an example where the display area may be a sibling controller of the nav's controller, but you need a way to let the sibling controller know a nav item was clicked, hence the broadcast. 
 
+The responsive-nav.html file is the template for the directive.
+
 The directive looks for the following attributes:
 
 - max-in-view: indicates the maximum items to display. This should correspond to what is set in the css ( i.e., 		.nav-filter > ul > li:nth-child(n+4) { display: none; } )
