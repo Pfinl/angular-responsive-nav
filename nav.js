@@ -5,19 +5,19 @@ var app = angular.module("app", [])
     $scope.getNavItems = function () {
         //This must return a promise
 	      var items = [];
-        var deferred = $q.defer();
-
-	      items.push({ "name": "Nav 1", "view": "ok" });
-        items.push({ "name": "Nav 2", "view": "whatever" });
-        items.push({ "name": "Nav 3", "view": "great" });
-
+	      var deferred = $q.defer();
+	
+	      items.push({ "name": "Angular UI", "url": "http://angular-ui.github.io/bootstrap/" });
+	      items.push({ "name": "Click Me!", "data": "well, hello there!" });
+	      items.push({ "name": "Twitter Bootstrap", "url": "http://getbootstrap.com/" });
+	
 	      items.push({ "name": "Google", "url": "http://google.com" });
 	      items.push({ "name": "Angular JS", "url": "http://angularjs.org/" });
-	      items.push({ "name": "Angular Translate Rocks", "url": "https://github.com/angular-translate/angular-translate" });
+	      items.push({ "name": "Angular Translate", "url": "https://github.com/angular-translate/angular-translate" });
 
-        deferred.resolve(items);
-
-        return deferred.promise;
+	deferred.resolve(items);
+	
+	return deferred.promise;
 
     };
 
@@ -27,6 +27,9 @@ var app = angular.module("app", [])
             //$location.path(item.url);
             window.open(item.url);
             return;
+        }
+        else if (angular.isDefined(item.data)) {
+            alert(item.data);	
         }
 
         if (broadcastKey)
