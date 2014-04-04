@@ -1,0 +1,50 @@
+.nav-filter > ul > li a, .dropdown-menu > li > a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block; 
+}
+
+.nav-filter {
+  padding-bottom: 0.5em; 
+}
+.nav-filter > ul {
+  list-style-type: none; 
+}
+.nav-filter > ul > li {
+  padding: 0.2em;
+  display: inline-block;
+  max-width: 180px;
+  margin: 0 20px;
+  font-size: 1.1em;
+  position: relative; 
+}
+.nav-filter > ul > li a {
+  text-decoration: none;
+  color: #404040; 
+}
+.nav-filter > ul > li:nth-child(n+4) {
+  display: none; 
+}
+.nav-filter > ul > li.active {
+  border-bottom: 2px solid #84b014; 
+}
+.nav-filter > ul > li.nav-more .dropdown-menu {
+  max-width: 250px;
+  text-align: left; 
+}
+.nav-filter > ul > li.nav-more .dropdown-menu a {
+  font-size: 0.9em; 
+}
+
+@media handheld, only screen and (max-width: 767px) {
+  .nav-filter > ul > li:nth-child(n+3) {
+    display: none; 
+  }
+}
+
+@media handheld, only screen and (max-width: 455px) {
+  .nav-filter > ul > li:nth-child(n+2) {
+      display: none; 
+  }
+}
