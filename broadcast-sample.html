@@ -1,0 +1,13 @@
+<div ng-controller="NavController">
+  <div>
+    <div class="nav-filter">
+        <div responsive-nav get-items="getNavItems()" item-click="onItemSelect(item, broadcastKey)" 
+          nav-broadcast-key="do-nav"></div>    
+    </div>
+  </div>
+</div>
+<div>
+  <div>
+    <div sample-directive nav-listener-key="do-nav"></div>
+  </div>
+</div>
